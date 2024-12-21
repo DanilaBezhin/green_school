@@ -1,0 +1,24 @@
+/* font-family: "Merriweather", serif; */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+/* font-family: "Lato", sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* font-family: "Supermercado One", sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+/* font-family: 'Savoye', sans-serif; */
+@font-face {
+    font-family: 'Savoye';
+    src: url('../fonts/savoyeletplain.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --green: #00c925;
+    --black: #303030;
+    --white: #fff;
+    --grey: #f3f3f3;
+    --s-font: 20px;
+    --sm-font: 24px;
+    --m-font: 30px;
+    --l-font: 46px;
+}
