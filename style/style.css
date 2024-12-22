@@ -7,9 +7,16 @@ html {
     scroll-behavior: smooth;
 }
 
-.body {
+body {
     font-family: 'Lato', sans-serif;
     color: var(--black);
+}
+
+body.no-scroll {
+    overflow: hidden; /* Отключение прокрутки для страницы */
+    position: fixed; /* Блокировка положения */
+    width: 100%; /* Убираем возможные смещения */
+    height: 100%;
 }
 
 .container {
@@ -17,6 +24,38 @@ html {
     width: 100%;
     margin: 0 auto;
     padding: 0 15px;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white); /* Цвет фона прелоадера */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Обеспечиваем, что прелоадер будет поверх всего */
+    transition: opacity 0.3s ease;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid var(--grey); /* Светлая часть круга */
+    border-top: 6px solid var(--green); /* Цвет вращающейся части */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Анимация вращения */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .arrow-up {
@@ -782,6 +821,9 @@ select#countryCode option {
         transition: transform ease-in-out 1s;
         will-change: transform;
     }
+    .header-menu li {
+        font-size: var(--sm-font);
+    }
     .header-menu.active {
         transform: translate(0px, 0%);
     }
@@ -824,11 +866,13 @@ select#countryCode option {
     .burgermenu i::after {
         bottom: -7px;
     }
-    .burgermenu:hover i::before {
-        top: -10px;
-    }
-    .burgermenua:hover i::after {
-        bottom: -10px;
+    @media (hover: hover) {
+        .burgermenu:hover i::before {
+            top: -10px;
+        }
+        .burgermenu:hover i::after {
+            bottom: -10px;
+        }
     }
     .burgermenu.active i {
         background: transparent;
@@ -932,6 +976,20 @@ select#countryCode option {
         margin: 0 auto;
         width: 62%;
     }
+    .section5-checkbox {
+        margin-bottom: 0;
+    }
+    .section5-checkbox div {
+        margin-bottom: 5px;
+    }
+    .section {
+        padding-bottom: 25px;
+    }
+    input,
+    textarea {
+        color: #000; /* Черный цвет текста */
+        border-radius: 0; /* Убираем скругление рамок */
+    }
 }
 @media (max-width: 510px) {
     #phoneNumber {
@@ -946,6 +1004,17 @@ select#countryCode option {
     .section4-countries {
         padding-left: 19px;
         padding-right: 19px;
+        gap: 12px;
+    }
+    .section4-countries img {
+        width: 33%;
+        flex: auto;
+        max-width: none;
+        min-width: auto;
+    }
+    select#countryCode {
+        max-width: none;
+        width: 100%;
     }
 }
 @media (max-width: 370px) {
@@ -977,5 +1046,10 @@ select#countryCode option {
         position: absolute;
         top: 0;
         right: -16%;
+    }
+}
+@media (max-width: 435px) {
+    .footer-container {
+        gap: 20px;
     }
 }

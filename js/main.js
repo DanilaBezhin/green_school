@@ -111,10 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// БЕГУЩАЯ СТРОКА
-
 // ОТПРАВКА ФОРМЫ
-
 document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault(); // Отключаем стандартное поведение отправки формы
 
@@ -139,4 +136,43 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
             alert('Ошибка отправки. Попробуйте еще раз.');
         },
     );
+});
+
+// Отключение прокрутки
+function disableScroll() {
+    // Добавляем класс для CSS
+    document.body.classList.add('no-scroll');
+
+    // Перехват событий прокрутки мышью и мобильных устройств
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    window.addEventListener('touchmove', preventScroll, { passive: false });
+}
+
+// Включение прокрутки
+function enableScroll() {
+    // Убираем класс для CSS
+    document.body.classList.remove('no-scroll');
+
+    // Убираем слушатели событий
+    window.removeEventListener('wheel', preventScroll);
+    window.removeEventListener('touchmove', preventScroll);
+}
+
+// Функция, которая предотвращает скролл
+function preventScroll(event) {
+    event.preventDefault();
+}
+
+// При загрузке страницы показываем прелоадер и блокируем скролл
+window.addEventListener('load', function () {
+    const preloader = document.querySelector('.preloader');
+
+    // Убираем прелоадер через 1 секунду, разрешая прокрутку
+    setTimeout(() => {
+        enableScroll();
+        preloader.style.opacity = '0'; // Плавное исчезновение
+        preloader.addEventListener('transitionend', () => preloader.remove());
+    }, 0);
+
+    disableScroll(); // Блокируем прокрутку
 });
