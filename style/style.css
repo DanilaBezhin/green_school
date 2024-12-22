@@ -667,6 +667,10 @@ select#countryCode option {
     font-family: 'Lato', sans-serif;
 }
 
+select#countryCode {
+    color: var(--black);
+}
+
 #contact-form input:focus,
 #contact-form select:focus,
 #contact-form input:focus-visible,
