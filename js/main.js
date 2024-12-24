@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault(); // Отключаем стандартное поведение отправки формы
 
-    const serviceID = 'service_blyihpn'; // Укажите ID вашего сервиса
+    const serviceID = 'green_school_service_id'; // Укажите ID вашего сервиса
     const templateID = 'template_05wdj4x'; // Укажите ID вашего шаблона
 
     // Собираем выбранные чекбоксы
