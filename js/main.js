@@ -118,18 +118,23 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
     const serviceID = 'service_blyihpn'; // Укажите ID вашего сервиса
     const templateID = 'template_05wdj4x'; // Укажите ID вашего шаблона
 
-    // Собираем данные из формы
-    const formData = new FormData(this);
-    const checkboxes = document.querySelectorAll('input[name="contact"]:checked'); // Исправлено имя поля
+    // Собираем выбранные чекбоксы
+    const checkboxes = document.querySelectorAll('input[name="contact"]:checked');
     let contactChoices = [];
     checkboxes.forEach((checkbox) => contactChoices.push(checkbox.value));
-    formData.set('contact', contactChoices.join(', ')); // Добавляем выбранные способы связи
+
+    // Добавляем данные в скрытое поле формы
+    const contactField = document.createElement('input');
+    contactField.type = 'hidden';
+    contactField.name = 'contact'; // Имя поля должно совпадать с шаблоном
+    contactField.value = contactChoices.join(', ');
+    this.appendChild(contactField);
 
     // Отправляем форму через EmailJS
-    emailjs.sendForm(serviceID, templateID, formData).then(
+    emailjs.sendForm(serviceID, templateID, this).then(
         () => {
             alert('Сообщение успешно отправлено!');
-            this.reset();
+            this.reset(); // Сбрасываем форму
         },
         (error) => {
             console.error('Ошибка отправки:', error); // Добавлено для отладки
