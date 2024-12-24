@@ -120,35 +120,40 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
 
     // Собираем данные из формы
     const formData = new FormData(this);
-    const checkboxes = document.querySelectorAll('input[name="contactChoice"]:checked');
+    const checkboxes = document.querySelectorAll('input[name="contact"]:checked'); // Исправлено имя поля
     let contactChoices = [];
     checkboxes.forEach((checkbox) => contactChoices.push(checkbox.value));
-    formData.set('contactChoice', contactChoices.join(', ')); // Добавляем выбранные способы связи
+    formData.set('contact', contactChoices.join(', ')); // Добавляем выбранные способы связи
 
     // Отправляем форму через EmailJS
     emailjs.sendForm(serviceID, templateID, formData).then(
         () => {
             alert('Сообщение успешно отправлено!');
-            this.reset(); // Очистить форму
+            this.reset();
         },
         (error) => {
-            console.error('Ошибка отправки:', error);
-            alert('Ошибка отправки. Попробуйте еще раз.');
+            console.error('Ошибка отправки:', error); // Добавлено для отладки
+            alert(`Ошибка отправки: ${error.text || 'Попробуйте еще раз.'}`);
         },
     );
 });
 
 // Отключение прокрутки
-// Отключение прокрутки
 function disableScroll() {
+    // Добавляем класс для CSS
     document.body.classList.add('no-scroll');
+
+    // Перехват событий прокрутки мышью и мобильных устройств
     window.addEventListener('wheel', preventScroll, { passive: false });
     window.addEventListener('touchmove', preventScroll, { passive: false });
 }
 
 // Включение прокрутки
 function enableScroll() {
+    // Убираем класс для CSS
     document.body.classList.remove('no-scroll');
+
+    // Убираем слушатели событий
     window.removeEventListener('wheel', preventScroll);
     window.removeEventListener('touchmove', preventScroll);
 }
@@ -158,26 +163,16 @@ function preventScroll(event) {
     event.preventDefault();
 }
 
-// Проверка загрузки всех изображений
-function allImagesLoaded() {
-    const images = document.querySelectorAll('img');
-    return Array.from(images).every((img) => img.complete && img.naturalHeight !== 0);
-}
-
 // При загрузке страницы показываем прелоадер и блокируем скролл
 window.addEventListener('load', function () {
     const preloader = document.querySelector('.preloader');
 
+    // Убираем прелоадер через 1 секунду, разрешая прокрутку
+    setTimeout(() => {
+        enableScroll();
+        preloader.style.opacity = '0'; // Плавное исчезновение
+        preloader.addEventListener('transitionend', () => preloader.remove());
+    }, 0);
+
     disableScroll(); // Блокируем прокрутку
-
-    const checkImagesInterval = setInterval(() => {
-        if (allImagesLoaded()) {
-            clearInterval(checkImagesInterval); // Останавливаем проверку
-            enableScroll(); // Включаем прокрутку
-
-            // Плавное исчезновение прелоадера
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => preloader.remove());
-        }
-    }, 100); // Проверяем каждые 100 мс
 });
