@@ -210,6 +210,7 @@ body.no-scroll {
 .unheader-left h1 {
     font-size: var(--l-font);
     line-height: 1;
+    font-family: 'Merriweather', serif;
 }
 
 .unheader-text {
