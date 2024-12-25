@@ -132,12 +132,18 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
     let contactChoices = [];
     selectedCheckboxes.forEach((checkbox) => contactChoices.push(checkbox.value));
 
-    // Добавляем данные в скрытое поле формы
-    const contactField = document.createElement('input');
-    contactField.type = 'hidden';
-    contactField.name = 'contact'; // Имя поля должно совпадать с шаблоном
+    // Проверяем, существует ли скрытое поле для "contact"
+    let contactField = document.querySelector('input[name="contact"]');
+    if (!contactField) {
+        // Если скрытого поля нет, создаем его
+        contactField = document.createElement('input');
+        contactField.type = 'hidden';
+        contactField.name = 'contact'; // Имя поля должно совпадать с шаблоном
+        this.appendChild(contactField);
+    }
+
+    // Обновляем значение скрытого поля
     contactField.value = contactChoices.join(', ');
-    this.appendChild(contactField);
 
     // Отправляем форму через EmailJS
     emailjs.sendForm(serviceID, templateID, this).then(
