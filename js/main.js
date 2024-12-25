@@ -115,13 +115,22 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault(); // Отключаем стандартное поведение отправки формы
 
+    // Проверяем, что хотя бы один чекбокс выбран
+    const checkboxes = document.querySelectorAll('input[name="contact"]');
+    const isChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
+
+    if (!isChecked) {
+        alert('Пожалуйста, выберите хотя бы один способ связи!');
+        return; // Прерываем дальнейшее выполнение, если ничего не выбрано
+    }
+
     const serviceID = 'green_school_service_id'; // Укажите ID вашего сервиса
     const templateID = 'template_05wdj4x'; // Укажите ID вашего шаблона
 
     // Собираем выбранные чекбоксы
-    const checkboxes = document.querySelectorAll('input[name="contact"]:checked');
+    const selectedCheckboxes = document.querySelectorAll('input[name="contact"]:checked');
     let contactChoices = [];
-    checkboxes.forEach((checkbox) => contactChoices.push(checkbox.value));
+    selectedCheckboxes.forEach((checkbox) => contactChoices.push(checkbox.value));
 
     // Добавляем данные в скрытое поле формы
     const contactField = document.createElement('input');
