@@ -38,6 +38,7 @@
         <link rel="stylesheet" href="./style/var.css" />
         <link rel="stylesheet" href="./style/style.css" />
         <link rel="stylesheet" href="./style/glide.core.min.css" />
+        <link rel="stylesheet" href="./style/aos.css" />
 
         <!-- отправка формы -->
         <script
@@ -92,13 +93,20 @@
             <div class="container">
                 <section class="unheader">
                     <div class="unheader-left unheader-section">
-                        <img class="unheader-logo" src="./img/logo.svg" alt="Логотип листок" />
-                        <h1>GREEN SCHOOL</h1>
-                        <p class="unheader-text">
-                            Индивидуальное обучение программированию<br />
-                            Максимум внимания и результата
-                        </p>
-                        <blockquote class="unheader-comment">
+                        <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="700">
+                            <img class="unheader-logo" src="./img/logo.svg" alt="Логотип листок" />
+                            <h1>GREEN SCHOOL</h1>
+                            <p class="unheader-text">
+                                Индивидуальное обучение программированию<br />
+                                Максимум внимания и результата
+                            </p>
+                        </div>
+
+                        <blockquote
+                            data-aos="fade-down-left"
+                            data-aos-duration="1000"
+                            class="unheader-comment"
+                        >
                             <img src="./img/comment.svg" alt="Иконка цитаты" />
                             <p class="unheader-comment-text">
                                 Я обучаю программированию более 5 лет и за это время работал как с
@@ -123,7 +131,7 @@
                         <span>ПОЧЕМУ</span> СТОИТ РАБОТАТЬ <span>ИМЕННО СО МНОЙ</span>
                     </h2>
                     <div class="cards">
-                        <div class="card">
+                        <div class="card" data-aos="fade-right" data-aos-duration="900">
                             <span>1</span>
                             <img src="./img/card1.gif" loading="lazy" alt="гифка удар кулачками" />
                             <h3>
@@ -136,7 +144,7 @@
                                 нужен именно вам.
                             </p>
                         </div>
-                        <div class="card">
+                        <div class="card" data-aos="fade-right" data-aos-duration="900">
                             <span>2</span>
                             <img src="./img/card2.gif" loading="lazy" alt="гифка удар кулачками" />
                             <h3>
@@ -150,7 +158,7 @@
                                 на ваших задачах
                             </p>
                         </div>
-                        <div class="card">
+                        <div class="card" data-aos="fade-right" data-aos-duration="900">
                             <span>3</span>
                             <img src="./img/card3.gif" loading="lazy" alt="гифка удар кулачками" />
                             <h3>
@@ -164,7 +172,7 @@
                                 вопросы, помочь разобраться и мотивировать
                             </p>
                         </div>
-                        <div class="card">
+                        <div class="card" data-aos="fade-left" data-aos-duration="900">
                             <span>4</span>
                             <img src="./img/card4.gif" loading="lazy" alt="гифка удар кулачками" />
                             <h3>Гибкий график</h3>
@@ -173,7 +181,7 @@
                                 обучение с работой или учебой
                             </p>
                         </div>
-                        <div class="card">
+                        <div class="card" data-aos="fade-left" data-aos-duration="900">
                             <span>5</span>
                             <img src="./img/card5.gif" loading="lazy" alt="гифка удар кулачками" />
                             <h3>Быстрее к результату</h3>
@@ -182,7 +190,7 @@
                                 прогресса в 2–3 раза быстрее, чем в группе
                             </p>
                         </div>
-                        <div class="card">
+                        <div class="card" data-aos="fade-left" data-aos-duration="900">
                             <span>6</span>
                             <img src="./img/card6.gif" loading="lazy" alt="гифка удар кулачками" />
                             <h3>Поддержка в любое время</h3>
@@ -202,8 +210,10 @@
                 </h2>
                 <div class="section2-scratch">
                     <div class="section2-age">
-                        <span>c 7 лет</span>
-                        <h3>Scratch</h3>
+                        <span data-aos="zoom-in" data-aos-duration="800">c 7 лет</span>
+                        <h3 data-aos="fade-left" data-aos-delay="500" data-aos-duration="600">
+                            Scratch
+                        </h3>
                     </div>
                     <p class="section2-text section2-text1">
                         <span
@@ -287,8 +297,10 @@
                 </div>
                 <div class="section2-python">
                     <div class="section2-age">
-                        <span>c 11 лет</span>
-                        <h3>Python</h3>
+                        <span data-aos="zoom-in" data-aos-duration="800">c 11 лет</span>
+                        <h3 data-aos="fade-left" data-aos-delay="500" data-aos-duration="600">
+                            Python
+                        </h3>
                     </div>
                     <p class="section2-text section2-text1">
                         <span>Это один из самых популярных языков программирования в мире</span>
@@ -431,16 +443,42 @@
                     БОЛЕЕ <span>100</span> ДОВОЛЬНЫХ УЧЕНИКОВ <span>ПО ВСЕМУ МИРУ</span>
                 </h2>
                 <div class="section4-countries">
-                    <img src="./img/countries/kg.webp" alt="флаг Кыргызстана" />
-                    <img src="./img/countries/kz.webp" alt="флаг Казахстана" />
-                    <img src="./img/countries/br.webp" alt="флаг Беларуссии" />
-                    <img src="./img/countries/us.webp" alt="флаг Америки" />
-                    <img src="./img/countries/ru.webp" alt="флаг России" />
+                    <img
+                        data-aos="zoom-in"
+                        data-aos-duration="700"
+                        src="./img/countries/kg.webp"
+                        alt="флаг Кыргызстана"
+                    />
+                    <img
+                        data-aos="zoom-in"
+                        data-aos-duration="700"
+                        src="./img/countries/kz.webp"
+                        alt="флаг Казахстана"
+                    />
+                    <img
+                        data-aos="zoom-in"
+                        data-aos-duration="700"
+                        src="./img/countries/br.webp"
+                        alt="флаг Беларуссии"
+                    />
+                    <img
+                        data-aos="zoom-in"
+                        data-aos-duration="700"
+                        src="./img/countries/us.webp"
+                        alt="флаг Америки"
+                    />
+                    <img
+                        data-aos="zoom-in"
+                        data-aos-duration="700"
+                        src="./img/countries/ru.webp"
+                        alt="флаг России"
+                    />
                 </div>
                 <p class="section4-text">
                     Занятия доступны как <span>онлайн</span> так и
                     <span>офлайн в Новосибирске</span>, а на первое занятие
-                    <span>вы получите скидку 50%</span> от изначальной цены - 8$ в час.
+                    <span>вы получите скидку 50%</span> от изначальной цены - 8$ в час. А при оплате
+                    занятий <span>за месяц скидка составит 25%.</span>
                 </p>
             </section>
 
@@ -450,8 +488,13 @@
                         КАК <span>ЗАПИСАТЬСЯ</span> НА ЗАНЯТИЯ
                     </h2>
                     <div class="section5-step section5-step1">
-                        <span class="section5-step-number">1</span>
-                        <h3>
+                        <span
+                            class="section5-step-number"
+                            data-aos="zoom-in"
+                            data-aos-duration="800"
+                            >1</span
+                        >
+                        <h3 data-aos="fade-left" data-aos-delay="500" data-aos-duration="600">
                             Напишите мне в <span>Telegram</span>, на <span>почту</span> или в
                             <span>WhatsApp</span>
                         </h3>
@@ -463,13 +506,19 @@
                     </p>
                     <div class="phone-number">
                         <a href="mailto:danilabezhin@gmail.com">danilabezhin@gmail.com</a>
-                        <a href="tel:+79956892613">+7 (995) 689-26-13</a>
+                        <a href="tel:+79956898613">+7 (995) 689-86-13</a>
                         <!-- <a href="tel:+79955702188">+7 (995) 570-21-88</a> -->
                     </div>
                     <div class="section5-step section5-step2">
-                        <span class="section5-step-number">2</span>
-                        <h3>
-                            Оставьте заявку на сайте и <span>я свяжусь с вами в течении 24ч</span>
+                        <span
+                            class="section5-step-number"
+                            data-aos="zoom-in"
+                            data-aos-duration="800"
+                            >2</span
+                        >
+                        <h3 data-aos="fade-left" data-aos-delay="500" data-aos-duration="600">
+                            Или оставьте заявку на сайте, а я
+                            <span> свяжусь с вами в течении 24ч</span>
                         </h3>
                     </div>
 
@@ -568,7 +617,7 @@
                 </div>
                 <div class="footer-contacts">
                     <p>По сотрудничеству или иным вопросам</p>
-                    <a href="tel:+79956892613">+7 (995) 689-26-13</a>
+                    <a href="tel:+79956898613">+7 (995) 689-86-13</a>
                     <a href="tel:+79955702188">+7 (995) 570-21-88</a>
                     <a href="mailto:danilabezhin@gmail.com">danilabezhin@gmail.com</a>
                 </div>
@@ -587,6 +636,7 @@
 
         <script src="./js/glide.min.js"></script>
         <script src="./js/inputmask.js"></script>
+        <script type="text/javascript" src="./js/aos.js"></script>
         <script src="./js/main.js"></script>
     </body>
 </html>
