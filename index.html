@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=0.9" />
         <title>Green School</title>
 
         <!-- Иконка сайта -->
@@ -118,10 +118,25 @@
                         </blockquote>
                     </div>
                     <div class="unheader-right unheader-section">
-                        <img src="./img/person.webp" alt="Фотография учителя" />
+                        <img class="unheader-author-photo" src="./img/person.webp" alt="Фотография учителя" />
                         <div class="unheader-authorname">
-                            Данила<br />
-                            Владимирович
+                            <a href="./pages/books.html"
+                                ><img
+                                    class="unheader-title-icon"
+                                    src="./img/book_icon.svg"
+                                    alt="задачник"
+                            /></a>
+                            <a target="_blank" href="https://www.youtube.com/@DanilaBezhin"
+                                ><img
+                                    class="unheader-title-icon"
+                                    src="./img/youtube_icon.svg"
+                                    alt="ютуб канал"
+                            /></a>
+                            <span class="unheader-title-icon-decor"></span>
+                            <p>
+                                Данила<br />
+                                Владимирович
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -499,6 +514,18 @@
                     <span>вы получите скидку 50%</span> от изначальной цены - 10$ в час. А при
                     оплате занятий <span>за месяц скидка составит 25%.</span>
                 </p>
+
+                <!-- <div class="certificate-content">
+                    <h2>А так же: Подарочный сертификат</h2>
+                    <img src="gift-icon.png" alt="Gift" class="gift-icon">
+                    <p class="certificate-slogan">Подарите знания!</p>
+                    <p class="certificate-description">Порадуйте близких сертификатом на обучение программированию!</p>
+                    <div class="certificate-actions">
+                        <a href="#" class="certificate-btn">Купить сертификат</a>
+                        <span>или</span>
+                        <a href="#" class="certificate-link">Записаться самому</a>
+                    </div>
+                </div> -->
             </section>
 
             <section id="gallery" class="section6 section">
@@ -820,7 +847,7 @@
 
                             <p>Предпочитаемый способ связи</p>
                             <div class="section5-checkbox">
-                                <div class="form-margin-left"> 
+                                <div class="form-margin-left">
                                     <input
                                         type="checkbox"
                                         id="contactChoice1"
@@ -849,7 +876,6 @@
                                     />
                                     <label for="contactChoice3">WhatsApp</label>
                                 </div>
-
                             </div>
                             <p>Согласие на обработку персональных данных</p>
                             <div>
@@ -860,7 +886,9 @@
                                         name="personal_data"
                                         required
                                     />
-                                    <label id="personal_data" for="personal_data">Я даю согласие на обработку моих персональных данных</label>
+                                    <label id="personal_data" for="personal_data"
+                                        >Я даю согласие на обработку моих персональных данных</label
+                                    >
                                 </div>
                             </div>
                             <input class="section5-submit" type="submit" value="Оставить заявку" />

@@ -1,0 +1,94 @@
+.section-title span {
+    color: var(--green);
+}
+
+.discount-block {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 20px;
+    margin: 30px 0;
+    box-shadow: 6px 6px 0 0 var(--green);
+    font-weight: bold;
+    font-size: var(--sm-font);
+    text-align: center;
+}
+
+.buy-button {
+    background-color: var(--green);
+    color: var(--black);
+    font-size: var(--m-font);
+    padding: 14px 28px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 6px 6px 0 0 var(--black);
+    transition: transform 0.2s ease;
+}
+
+.buy-button:hover {
+    transform: scale(1.05);
+}
+
+.reviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.review {
+    background-color: var(--white);
+    border-left: 6px solid var(--green);
+    padding: 20px;
+    flex: 1 1 30%;
+    box-shadow: 3px 3px 0 0 var(--black);
+    font-size: var(--s-font);
+    min-width: 230px;
+}
+
+.review span {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    color: var(--black);
+}
+
+.problem-card {
+    border: 2px solid var(--black);
+    padding: 40px 30px;
+    margin: 30px 0;
+    /* border-radius: 16px; */
+    box-shadow: 4px 4px 0 0 var(--green);
+    background-color: var(--white);
+}
+
+.problem-card .section-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.problem-card .section2-text {
+    font-size: var(--s-font);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.problem-card .section2-plus {
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.text-info {
+    text-align: center;
+    text-wrap: balance;
+}
+
+.section2-text.section2-text-info {
+    font-size: var(--ss-font);
+}
+
+.section2-text a{
+    color: var(--green)
+}
