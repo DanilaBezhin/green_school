@@ -4,7 +4,7 @@ document.getElementById('payment-form').addEventListener('submit', async functio
     const email = document.getElementById('email').value;
 
     try {
-        const response = await fetch('http://localhost:5000/pay', {
+        const response = await fetch('https://redfox69.pythonanywhere.com/pay', {
             // Убедитесь, что адрес соответствует вашему URL
             method: 'POST',
             headers: {
