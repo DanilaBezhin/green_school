@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(data => {
                 if (data.email) {
-                    emailjs.send("green_school_service_id", "template_05wdj4x", {
+                    emailjs.send("green_school_service_id", "template_cxd1gjc", {
                         user_email: data.email,
                         download_link: "https://danilabezhin.github.io/green_school/download/book.rar"
                     }).then(() => {
