@@ -25,3 +25,22 @@ document.getElementById('payment-form').addEventListener('submit', async functio
         alert('Произошла ошибка при оплате: ' + error.message);
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        fetch("https://redfox69.pythonanywhere.com/get-latest-email")
+            .then(res => res.json())
+            .then(data => {
+                if (data.email) {
+                    emailjs.send("green_school_service_id", "template_05wdj4x", {
+                        user_email: data.email,
+                        download_link: "https://danilabezhin.github.io/green_school/download/book.rar"
+                    }).then(() => {
+                        console.log("Письмо отправлено");
+                    }).catch(err => {
+                        console.error("Ошибка отправки:", err);
+                    });
+                }
+            });
+    }, 5000); 
+});
