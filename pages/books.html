@@ -77,7 +77,12 @@
                         </p>
                     </div> -->
 
-                    <button class="buy-button">Купить за 749₽</button>
+                    <form id="payment-form">
+                        <label for="email">Ваш Email:</label>
+                        <input type="email" id="email" required>
+                        <button type="submit" class="buy-button">Купить за 749₽</button>
+                    </form>
+                    
                     <p class="section2-text section2-text-info">
                         Нажимая «Купить», вы принимаете условия <a href="./../docs/offer_afree.html" target="_blank">договора оферты</a>.
                     </p>
@@ -157,5 +162,7 @@
                 </p>
             </div>
         </footer>
+
+        <script src="./../js/yooka.js"></script>
     </body>
 </html>
