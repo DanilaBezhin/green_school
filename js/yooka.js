@@ -34,9 +34,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (data.email) {
                     emailjs.send("green_school_service_id", "template_cxd1gjc", {
                         user_email: data.email,
-                        download_link: "https://danilabezhin.github.io/green_school/download/book.rar"
+                        download_link: "https://disk.yandex.ru/d/5_kc0L5PYaY4Bw"
                     }).then(() => {
                         console.log("Письмо отправлено");
+                    
+                        // Удаляем email с сервера
+                        fetch("https://redfox69.pythonanywhere.com/delete-email", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ email: data.email })
+                        }).then(res => res.json())
+                          .then(resp => {
+                              if (resp.status === "deleted") {
+                                  console.log("Email успешно удалён");
+                              } else {
+                                  console.warn("Email не был удалён:", resp);
+                              }
+                          }).catch(err => {
+                              console.error("Ошибка при удалении email:", err);
+                          });
+                    
                     }).catch(err => {
                         console.error("Ошибка отправки:", err);
                     });
