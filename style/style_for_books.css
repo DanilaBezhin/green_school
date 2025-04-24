@@ -13,6 +13,43 @@
     text-align: center;
 }
 
+#payment-form {
+
+    margin: 40px auto;
+    padding: 24px;
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 0 var(--green);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#payment-form label {
+    display: block;
+    font-size: var(--s-font);
+    margin-bottom: 8px;
+    color: var(--black);
+    font-weight: bold;
+}
+
+#payment-form input[type='email'] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--black);
+    font-size: var(--s-font);
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+#payment-form input[type='email']:focus {
+    border-color: var(--black);
+    outline: none;
+}
+
 .buy-button {
     background-color: var(--green);
     color: var(--black);
@@ -21,14 +58,15 @@
     font-weight: bold;
     cursor: pointer;
     border: none;
-    margin: 20px auto;
-    display: block;
+    display: inline-block;
     box-shadow: 6px 6px 0 0 var(--black);
-    transition: transform 0.2s ease;
+    transition: background-color 0.2s ease;
+    display: block;
+    width: 100%;
 }
 
 .buy-button:hover {
-    transform: scale(1.05);
+    background-color: var(--black_green);
 }
 
 .reviews {
@@ -89,6 +127,6 @@
     font-size: var(--ss-font);
 }
 
-.section2-text a{
-    color: var(--green)
+.section2-text a {
+    color: var(--green);
 }
