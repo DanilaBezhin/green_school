@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(`Письмо отправлено: ${email}`);
 
                             // помечаем email как "отправлено"
-                            fetch('https://redfox69.pythonanywhere.com/mark-as-sent', {
+                            fetch('https://redfox69.pythonanywhere.com/mark-email-sent', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
