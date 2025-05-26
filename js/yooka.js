@@ -29,6 +29,7 @@ document.getElementById('payment-form').addEventListener('submit', async functio
 document.addEventListener('DOMContentLoaded', () => {
     fetch('https://redfox69.pythonanywhere.com/get-unsent-emails')
         .then((res) => res.json())
+        .then(console.log)
         .then((data) => {
             if (Array.isArray(data.emails)) {
                 data.emails.forEach((item) => {
