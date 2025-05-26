@@ -2,15 +2,15 @@ document.getElementById('payment-form').addEventListener('submit', async functio
     e.preventDefault(); // Предотвращаем обычное поведение формы
 
     const email = document.getElementById('email').value;
+    const product_id = 'python_tasks';
 
     try {
         const response = await fetch('https://redfox69.pythonanywhere.com/pay', {
-            // Убедитесь, что адрес соответствует вашему URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify({ email, product_id }), // Пока не передаём product_id
         });
 
         if (!response.ok) {
@@ -18,8 +18,7 @@ document.getElementById('payment-form').addEventListener('submit', async functio
         }
 
         const result = await response.json();
-        // Перенаправляем на страницу подтверждения оплаты
-        window.location.href = result.confirmation_url;
+        window.location.href = result.confirmation_url; // Перенаправление на оплату
     } catch (error) {
         console.error('Ошибка:', error);
         alert('Произошла ошибка при оплате: ' + error.message);
@@ -32,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((res) => res.json())
         .then((data) => {
             if (Array.isArray(data.emails)) {
-                data.emails.forEach((email) => {
+                data.emails.forEach(({ email, product_id }) => {
+                    // Пока product_id не используется
                     emailjs
                         .send('green_school_service_id', 'template_cxd1gjc', {
                             user_email: email,
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .then(() => {
                             console.log(`Письмо отправлено: ${email}`);
 
-                            // помечаем email как "отправлено" mark-email-sent
+                            // Отметить email как "отправлено"
                             fetch('https://redfox69.pythonanywhere.com/mark-email-sent', {
                                 method: 'POST',
                                 headers: {
