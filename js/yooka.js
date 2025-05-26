@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .then(() => {
                             console.log(`Письмо отправлено: ${email}`);
 
-                            // помечаем email как "отправлено"
+                            // помечаем email как "отправлено" mark-email-sent
                             fetch('https://redfox69.pythonanywhere.com/mark-email-sent', {
                                 method: 'POST',
                                 headers: {
