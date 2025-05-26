@@ -26,6 +26,7 @@ document.getElementById('payment-form').addEventListener('submit', async functio
     }
 });
 
+// --- Получение email и отправка письма после оплаты ---
 document.addEventListener('DOMContentLoaded', () => {
     fetch('https://redfox69.pythonanywhere.com/get-unsent-emails')
         .then((res) => res.json())
