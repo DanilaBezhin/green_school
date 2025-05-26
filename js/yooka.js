@@ -27,41 +27,43 @@ document.getElementById('payment-form').addEventListener('submit', async functio
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://redfox69.pythonanywhere.com/get-latest-email')
+    fetch('https://redfox69.pythonanywhere.com/get-unsent-emails')
         .then((res) => res.json())
         .then((data) => {
-            if (data.email) {
-                emailjs
-                    .send('green_school_service_id', 'template_cxd1gjc', {
-                        user_email: data.email,
-                        download_link: 'https://disk.yandex.ru/d/5_kc0L5PYaY4Bw',
-                    })
-                    .then(() => {
-                        console.log('Письмо отправлено');
-
-                        // Удаляем email с сервера
-                        fetch('https://redfox69.pythonanywhere.com/delete-email', {
-                            method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ email: data.email }),
+            if (Array.isArray(data.emails)) {
+                data.emails.forEach((email) => {
+                    emailjs
+                        .send('green_school_service_id', 'template_cxd1gjc', {
+                            user_email: email,
+                            download_link: 'https://disk.yandex.ru/d/5_kc0L5PYaY4Bw',
                         })
-                            .then((res) => res.json())
-                            .then((resp) => {
-                                if (resp.status === 'deleted') {
-                                    console.log('Email успешно удалён');
-                                } else {
-                                    console.warn('Email не был удалён:', resp);
-                                }
+                        .then(() => {
+                            console.log(`Письмо отправлено: ${email}`);
+
+                            // помечаем email как "отправлено"
+                            fetch('https://redfox69.pythonanywhere.com/mark-as-sent', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ email }),
                             })
-                            .catch((err) => {
-                                console.error('Ошибка при удалении email:', err);
-                            });
-                    })
-                    .catch((err) => {
-                        console.error('Ошибка отправки:', err);
-                    });
+                                .then((res) => res.json())
+                                .then((resp) => {
+                                    if (resp.status === 'marked') {
+                                        console.log(`Email помечен как отправленный: ${email}`);
+                                    } else {
+                                        console.warn(`Не удалось пометить email: ${email}`, resp);
+                                    }
+                                });
+                        })
+                        .catch((err) => {
+                            console.error(`Ошибка при отправке письма: ${email}`, err);
+                        });
+                });
             }
+        })
+        .catch((err) => {
+            console.error("Ошибка получения списка email'ов:", err);
         });
 });
