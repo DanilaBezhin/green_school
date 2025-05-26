@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('https://redfox69.pythonanywhere.com/get-unsent-emails')
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
             if (Array.isArray(data.emails)) {
                 data.emails.forEach((email) => {
                     if (email) {
@@ -40,8 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 download_link: 'https://disk.yandex.ru/d/5_kc0L5PYaY4Bw',
                             })
                             .then(() => {
-                                console.log(`Письмо отправлено: ${email}`);
-
                                 fetch('https://redfox69.pythonanywhere.com/mark-email-sent', {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
@@ -52,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                         if (resp.status === 'marked') {
                                             console.log(`Email помечен как отправленный: ${email}`);
                                         } else {
-                                            console.warn(`Не удалось пометить email: ${email}`, resp);
+                                            console.warn(
+                                                `Не удалось пометить email: ${email}`,
+                                                resp,
+                                            );
                                         }
                                     });
                             })

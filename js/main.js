@@ -157,34 +157,34 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((data) => {
             if (Array.isArray(data.emails)) {
                 data.emails.forEach((email) => {
-                    emailjs
-                        .send('green_school_service_id', 'template_cxd1gjc', {
-                            user_email: email,
-                            download_link: 'https://disk.yandex.ru/d/5_kc0L5PYaY4Bw',
-                        })
-                        .then(() => {
-                            console.log(`Письмо отправлено: ${email}`);
-
-                            // помечаем email как "отправлено" mark-email-sent
-                            fetch('https://redfox69.pythonanywhere.com/mark-email-sent', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ email }),
+                    if (email) {
+                        emailjs
+                            .send('green_school_service_id', 'template_cxd1gjc', {
+                                user_email: email,
+                                download_link: 'https://disk.yandex.ru/d/5_kc0L5PYaY4Bw',
                             })
-                                .then((res) => res.json())
-                                .then((resp) => {
-                                    if (resp.status === 'marked') {
-                                        console.log(`Email помечен как отправленный: ${email}`);
-                                    } else {
-                                        console.warn(`Не удалось пометить email: ${email}`, resp);
-                                    }
-                                });
-                        })
-                        .catch((err) => {
-                            console.error(`Ошибка при отправке письма: ${email}`, err);
-                        });
+                            .then(() => {
+                                fetch('https://redfox69.pythonanywhere.com/mark-email-sent', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ email }),
+                                })
+                                    .then((res) => res.json())
+                                    .then((resp) => {
+                                        if (resp.status === 'marked') {
+                                            console.log(`Email помечен как отправленный: ${email}`);
+                                        } else {
+                                            console.warn(
+                                                `Не удалось пометить email: ${email}`,
+                                                resp,
+                                            );
+                                        }
+                                    });
+                            })
+                            .catch((err) => {
+                                console.error(`Ошибка при отправке письма: ${email}`, err);
+                            });
+                    }
                 });
             }
         })
