@@ -29,12 +29,10 @@ document.getElementById('payment-form').addEventListener('submit', async functio
 document.addEventListener('DOMContentLoaded', () => {
     fetch('https://redfox69.pythonanywhere.com/get-unsent-emails')
         .then((res) => res.json())
-        .then(console.log)
         .then((data) => {
+            console.log(data);
             if (Array.isArray(data.emails)) {
-                data.emails.forEach((item) => {
-                    const email = item.email; // получаем email из объекта
-                    // const product_id = item.product_id; // если нужно потом
+                data.emails.forEach((email) => {
                     if (email) {
                         emailjs
                             .send('green_school_service_id', 'template_cxd1gjc', {
@@ -54,10 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         if (resp.status === 'marked') {
                                             console.log(`Email помечен как отправленный: ${email}`);
                                         } else {
-                                            console.warn(
-                                                `Не удалось пометить email: ${email}`,
-                                                resp,
-                                            );
+                                            console.warn(`Не удалось пометить email: ${email}`, resp);
                                         }
                                     });
                             })
