@@ -74,6 +74,14 @@ function parseTimeString(timeString) {
     return h * 3600 + m * 60 + s;
 }
 
+// Возвращает начальное значение таймера в секундах (1 день 2 часа 15 минут)
+function getInitialTimerSeconds() {
+    const days = 1; // 1 день = 24 часа
+    const hours = 2; // +2 часа
+    const minutes = 15; // +15 минут
+    return days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60;
+}
+
 function startTimerFrom(seconds) {
     const display = document.getElementById('discount-timer');
     let timer = seconds;
@@ -86,7 +94,7 @@ function startTimerFrom(seconds) {
 
         const formatted = `Осталось: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(
             2,
-            '0'
+            '0',
         )}:${String(secondsLeft).padStart(2, '0')}`;
         display.textContent = formatted;
 
@@ -99,11 +107,10 @@ function startTimerFrom(seconds) {
             clearInterval(interval);
             display.textContent = 'Скоро вернём скидку...';
 
-            setTimeout(() => {
-                const newEndTime = Date.now() + 2 * 24 * 60 * 60 * 1000;
-                localStorage.setItem('discountEndsAt', newEndTime);
-                startTimerFrom(2 * 24 * 60 * 60);
-            }, 60 * 60 * 1000);
+            // Перезапускаем таймер с новым значением (1 день 2 часа 15 минут)
+            const newEndTime = Date.now() + getInitialTimerSeconds() * 1000;
+            localStorage.setItem('discountEndsAt', newEndTime);
+            startTimerFrom(getInitialTimerSeconds());
         }
     }, 1000);
 }
@@ -117,13 +124,10 @@ window.onload = () => {
         if (timeLeft > 0) {
             startTimerFrom(timeLeft);
         } else {
-            display.textContent = 'Скоро вернём скидку...';
-            display.classList.add('show');
-            setTimeout(() => {
-                const newEndTime = Date.now() + 2 * 24 * 60 * 60 * 1000;
-                localStorage.setItem('discountEndsAt', newEndTime);
-                startTimerFrom(2 * 24 * 60 * 60);
-            }, 60 * 60 * 1000);
+            // Перезапускаем таймер с начальным значением (1 день 2 часа 15 минут)
+            const newEndTime = Date.now() + getInitialTimerSeconds() * 1000;
+            localStorage.setItem('discountEndsAt', newEndTime);
+            startTimerFrom(getInitialTimerSeconds());
         }
     } else {
         const htmlText = display.dataset.start;
