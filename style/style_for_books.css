@@ -193,3 +193,15 @@
 .section2-text a {
     color: var(--green);
 }
+@media (max-width: 770px) {
+    .timer {
+        right: -43px;
+        top: -27px;
+    }
+}
+@media (max-width: 610px) {
+    .timer {
+        right: 0px;
+        top: -147px;
+    }
+}
