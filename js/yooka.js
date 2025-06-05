@@ -67,3 +67,71 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Ошибка получения списка email'ов:", err);
         });
 });
+function parseTimeString(timeString) {
+    const parts = timeString.match(/(\d+):(\d+):(\d+)/);
+    if (!parts) return null;
+    const [, h, m, s] = parts.map(Number);
+    return h * 3600 + m * 60 + s;
+}
+
+function startTimerFrom(seconds) {
+    const display = document.getElementById('discount-timer');
+    let timer = seconds;
+    let firstTick = true;
+
+    const interval = setInterval(() => {
+        const hours = Math.floor(timer / 3600);
+        const minutes = Math.floor((timer % 3600) / 60);
+        const secondsLeft = timer % 60;
+
+        const formatted = `Осталось: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(
+            2,
+            '0'
+        )}:${String(secondsLeft).padStart(2, '0')}`;
+        display.textContent = formatted;
+
+        if (firstTick) {
+            display.classList.add('show');
+            firstTick = false;
+        }
+
+        if (--timer < 0) {
+            clearInterval(interval);
+            display.textContent = 'Скоро вернём скидку...';
+
+            setTimeout(() => {
+                const newEndTime = Date.now() + 2 * 24 * 60 * 60 * 1000;
+                localStorage.setItem('discountEndsAt', newEndTime);
+                startTimerFrom(2 * 24 * 60 * 60);
+            }, 60 * 60 * 1000);
+        }
+    }, 1000);
+}
+
+window.onload = () => {
+    const display = document.getElementById('discount-timer');
+    const savedEndTime = localStorage.getItem('discountEndsAt');
+
+    if (savedEndTime) {
+        const timeLeft = Math.floor((+savedEndTime - Date.now()) / 1000);
+        if (timeLeft > 0) {
+            startTimerFrom(timeLeft);
+        } else {
+            display.textContent = 'Скоро вернём скидку...';
+            display.classList.add('show');
+            setTimeout(() => {
+                const newEndTime = Date.now() + 2 * 24 * 60 * 60 * 1000;
+                localStorage.setItem('discountEndsAt', newEndTime);
+                startTimerFrom(2 * 24 * 60 * 60);
+            }, 60 * 60 * 1000);
+        }
+    } else {
+        const htmlText = display.dataset.start;
+        const seconds = parseTimeString(htmlText);
+        if (seconds !== null) {
+            const endAt = Date.now() + seconds * 1000;
+            localStorage.setItem('discountEndsAt', endAt);
+            startTimerFrom(seconds);
+        }
+    }
+};

@@ -580,8 +580,11 @@ select#countryCode {
     padding: 12px 4px;
     font-weight: 600;
     background-color: var(--green);
-    color: var(--white);
+    color: var(--black);
     cursor: pointer;
+}
+#contact-form .section5-submit:hover {
+    background-color: var(--black_green);
 }
 #contact-form .section5-checkbox input {
     margin-right: 4px;
